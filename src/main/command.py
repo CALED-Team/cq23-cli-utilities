@@ -2,6 +2,7 @@ import sys
 
 from cleanup.command import cleanup
 from run_game.command import run_game
+from zip.command import zip
 
 from .utils import restore_cwd
 
@@ -20,3 +21,5 @@ def route_command():
         run_game(*command_args[1:])
     elif command_args[0].lower() == "cleanup":
         cleanup(*command_args[1:])
+    elif command_args[0].lower() == "zip":
+        zip(*command_args[1:])
