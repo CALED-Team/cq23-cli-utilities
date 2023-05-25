@@ -1,5 +1,6 @@
 import sys
 
+from cleanup.command import cleanup
 from run_game.command import run_game
 
 from .utils import restore_cwd
@@ -17,3 +18,5 @@ def route_command():
         help_message()
     elif command_args[0].lower() == "run":
         run_game(*command_args[1:])
+    elif command_args[0].lower() == "cleanup":
+        cleanup(*command_args[1:])

@@ -20,7 +20,7 @@ def get_client_image_tag():
 
 
 def pull_latest_game_server():
-    print("Pulling the game server...", end=" ")
+    print("Pulling the game server...", end=" ", flush=True)
     game_server_image = get_server_image_tag()
     try:
         DOCKER_CLIENT.images.pull(game_server_image)
@@ -46,13 +46,12 @@ def check_dockerfile_exists():
 
 def build_and_tag_image(image_tag):
     print("Building the image...")
-    client = docker.from_env()
     current_dir = os.getcwd()
     dockerfile_path = os.path.join(current_dir, "Dockerfile")
 
     # Build the Docker image
-    image, _ = client.images.build(
-        path=current_dir, dockerfile=dockerfile_path, tag=image_tag
+    image, _ = DOCKER_CLIENT.images.build(
+        path=current_dir, dockerfile=dockerfile_path, tag=image_tag, rm=True
     )
 
     # Print the ID of the built image
