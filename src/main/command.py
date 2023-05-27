@@ -2,6 +2,7 @@ import sys
 
 from check.command import check
 from cleanup.command import cleanup
+from new_client.command import new_client
 from run_game.command import run_game
 from zip.command import zip
 
@@ -11,6 +12,7 @@ from .utils import restore_cwd
 def help_message():
     message = (
         "Available commands:\n\n"
+        + "> cq23 new python my_bot\n"
         + "> cq23 run\n"
         + "> cq23 run map=<map name>\n"
         + "> cq23 zip\n"
@@ -26,6 +28,7 @@ def route_command():
     command_args = sys.argv[1:]
 
     first_arg_mapping = {
+        "new": new_client,
         "run": run_game,
         "cleanup": cleanup,
         "zip": zip,
