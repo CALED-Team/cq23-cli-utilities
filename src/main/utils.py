@@ -12,3 +12,15 @@ def restore_cwd(func):
             os.chdir(original_cwd)
 
     return wrapper
+
+
+def admin(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        confirm_admin = os.getenv("CQ23CLI_ADMIN_CONFIRMATION", None)
+        if not confirm_admin:
+            print("Only admins are supposed to use this command.")
+        else:
+            return func(*args, **kwargs)
+
+    return wrapper

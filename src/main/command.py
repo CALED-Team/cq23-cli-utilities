@@ -1,5 +1,7 @@
 import sys
 
+from admin.builder import command as builder
+from admin.worker import command as worker
 from check.command import check
 from cleanup.command import cleanup
 from new_client.command import new_client
@@ -33,6 +35,8 @@ def route_command():
         "cleanup": cleanup,
         "zip": zip,
         "check": check,
+        "worker": worker,
+        "builder": builder,
     }
 
     if not command_args or command_args[0].lower() not in first_arg_mapping.keys():
