@@ -2,13 +2,25 @@ import os
 import shutil
 
 import docker
-from docker.errors import APIError, NotFound
+from docker.errors import APIError, DockerException, NotFound
 
 AWS_REGION = "ap-southeast-2"
 ECR_REGISTRY = "public.ecr.aws/z3i0q5x8"
 GAME_SERVER_ECR_REPO = "cq-game-server"
 
-DOCKER_CLIENT = docker.from_env()
+DOCKER_CLIENT = None
+
+
+def ensure_docker_client_exists():
+    global DOCKER_CLIENT
+    try:
+        DOCKER_CLIENT = docker.from_env()
+    except DockerException:
+        print(
+            "Docker not found! Either not installed or not running. If you have installed Docker Desktop make sure to "
+            'open it first. Search "Docker Desktop" in your applications.'
+        )
+        exit(1)
 
 
 def get_server_image_tag():

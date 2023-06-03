@@ -42,6 +42,7 @@ def copy_container_logs(game_files_abs_path, gcs_folder_name):
 
 
 def run_game(*args):
+    docker_tools.ensure_docker_client_exists()
     game_files_dir = ".game_files"
     gcs_folder_name = "gcs"
     gcs_repo = "https://github.com/CALED-Team/game-communication-system.git"
