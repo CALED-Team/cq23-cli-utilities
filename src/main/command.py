@@ -5,6 +5,7 @@ from admin.worker import command as worker
 from check.command import check
 from cleanup.command import cleanup
 from new_client.command import new_client
+from replay.command import replay
 from run_game.command import run_game
 from zip.command import zip
 
@@ -17,6 +18,7 @@ def help_message():
         + "> cq23 new python my_bot\n"
         + "> cq23 run\n"
         + "> cq23 run map=<map name>\n"
+        + "> cq23 replay\n"
         + "> cq23 zip\n"
         + "> cq23 check\n"
         + "> cq23 cleanup\n\n"
@@ -32,6 +34,7 @@ def route_command():
     first_arg_mapping = {
         "new": new_client,
         "run": run_game,
+        "replay": replay,
         "cleanup": cleanup,
         "zip": zip,
         "check": check,

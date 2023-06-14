@@ -14,10 +14,11 @@ MATCH_TIMEOUT_SECONDS = 12 * 60  # This should ideally match the one in game wor
 
 def run_gui():
     replay_files_directory = os.path.join(os.getcwd(), "replay_files")
-    gui_directory = os.path.join(os.getcwd(), "gui")
+    # gui_directory = os.path.join(os.getcwd(), "gui")
     gui_process = Process(target=flask_api.start, args=(replay_files_directory,))
     gui_process.start()
-    webbrowser.open("file://" + os.path.join(gui_directory, "index.html"))
+    # webbrowser.open("file://" + os.path.join(gui_directory, "index.html"))
+    webbrowser.open("https://watch.codequest.club/?base_url=localhost:2023/")
     return gui_process
 
 
