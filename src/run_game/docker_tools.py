@@ -52,7 +52,7 @@ def check_dockerfile_exists():
     else:
         raise Exception(
             "Dockerfile not found! Make sure you run `cq23_run` from the directory that contains your bot's"
-            "Dockerfile."
+            " Dockerfile."
         )
 
 

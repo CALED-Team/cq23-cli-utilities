@@ -16,7 +16,7 @@ def clone_or_pull_repository(repository_url, folder_path):
         os.chdir(folder_path)
         subprocess.run(["git", "pull"])
         os.chdir(current_dir)
-    print("GCS cloned successfully.")
+    print(folder_path + " cloned successfully.")
 
 
 def extract_map_from_command_args(args):
@@ -45,7 +45,9 @@ def run_game(*args):
     docker_tools.ensure_docker_client_exists()
     game_files_dir = ".game_files"
     gcs_folder_name = "gcs"
+    gui_folder_name = "gui"
     gcs_repo = "https://github.com/CALED-Team/game-communication-system.git"
+    gui_repo = "https://github.com/CALED-Team/game-gui-23.git"
 
     docker_tools.check_dockerfile_exists()
     docker_tools.build_and_tag_image(docker_tools.get_client_image_tag())
@@ -56,6 +58,7 @@ def run_game(*args):
     game_files_abs_path = os.getcwd()
 
     clone_or_pull_repository(gcs_repo, gcs_folder_name)
+    clone_or_pull_repository(gui_repo, gui_folder_name)
     docker_tools.pull_latest_game_server()
     run_gcs(gcs_folder_name, extract_map_from_command_args(args))
     docker_tools.copy_replay_files(game_files_abs_path)
