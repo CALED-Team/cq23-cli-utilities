@@ -29,6 +29,7 @@ def new_client(*args):
     language_map = {
         "raw": "https://github.com/CALED-Team/codequest23-raw-submission.git",
         "python": "https://github.com/CALED-Team/codequest23-python-submission.git",
+        "cpp": "https://github.com/CALED-Team/codequest23-cpp-submission.git",
     }
     language = args[0]
 
