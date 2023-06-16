@@ -18,7 +18,7 @@ def run_gui():
     gui_process = Process(target=flask_api.start, args=(replay_files_directory,))
     gui_process.start()
     # webbrowser.open("file://" + os.path.join(gui_directory, "index.html"))
-    webbrowser.open("https://watch.codequest.club/?base_url=localhost:2023/")
+    webbrowser.open("https://watch.codequest.club/?base_url=http://127.0.0.1:2023/")
     return gui_process
 
 
