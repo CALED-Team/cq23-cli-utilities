@@ -13,7 +13,9 @@ MATCH_TIMEOUT_SECONDS = 12 * 60  # This should ideally match the one in game wor
 
 
 def run_gui():
-    replay_files_directory = os.path.join(os.getcwd(), "replay_files")
+    replay_files_directory = os.path.join(
+        os.path.join(os.path.join(os.getcwd(), "gcs"), "src"), "live_replay_files"
+    )
     # gui_directory = os.path.join(os.getcwd(), "gui")
     gui_process = Process(target=flask_api.start, args=(replay_files_directory,))
     gui_process.start()
@@ -69,7 +71,7 @@ def run_gcs(gcs_folder_name, game_map=None):
 
     print("Starting the game...")
     subprocess.run(subprocess_args, timeout=MATCH_TIMEOUT_SECONDS, cwd=gcs_src_dir)
-    print("Game finished.")
+    print("Game finished.", flush=True)
 
     print("Stopping the game interface...")
     stop_gui(gui_process)
