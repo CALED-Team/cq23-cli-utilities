@@ -100,6 +100,9 @@ def get_file_contents():
 
 
 def start(replay_files_directory, port=2023, debug=False):
+    # This wait time here is implemented for the game server to have enough time to write a couple of the replay files
+    time.sleep(5)
+
     global ROOT_DIRECTORY, PORT
     ROOT_DIRECTORY = replay_files_directory
     PORT = port
