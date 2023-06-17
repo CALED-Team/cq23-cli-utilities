@@ -6,7 +6,7 @@ from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 from werkzeug.serving import make_server
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/F", static_folder="files")
 CORS(app)
 ROOT_DIRECTORY = None
 PORT = None
@@ -101,13 +101,13 @@ def get_file_contents():
 
 def start(replay_files_directory, port=2023, debug=False):
     # This wait time here is implemented for the game server to have enough time to write a couple of the replay files
-    time.sleep(5)
+    time.sleep(7)
 
     global ROOT_DIRECTORY, PORT
     ROOT_DIRECTORY = replay_files_directory
     PORT = port
 
     global SERVER
-    SERVER = make_server("127.0.0.1", port, app)
+    SERVER = make_server("127.0.0.1", port, app, threaded=True)
     SERVER.serve_forever()
     # app.run(debug=debug, port=PORT, threaded=True)
