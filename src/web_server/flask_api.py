@@ -1,4 +1,5 @@
-import os.path
+import logging
+import os
 import time
 from threading import Thread
 
@@ -16,7 +17,6 @@ SERVER = None
 
 def get_full_path_or_404(file_name):
     full_file_path = os.path.join(ROOT_DIRECTORY, file_name)
-    print(full_file_path)
     if not os.path.exists(full_file_path):
         return False, (jsonify({"message": "Replay file not found."}), 404)
 
@@ -100,6 +100,9 @@ def get_file_contents():
 
 
 def start(replay_files_directory, port=2023, debug=False):
+    if not debug:
+        logging.getLogger("werkzeug").setLevel(logging.ERROR)
+
     # This wait time here is implemented for the game server to have enough time to write a couple of the replay files
     time.sleep(7)
 
