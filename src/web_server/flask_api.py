@@ -1,12 +1,17 @@
 import os.path
+import time
+from threading import Thread
 
 from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
+from werkzeug.serving import make_server
 
 app = Flask(__name__)
 CORS(app)
 ROOT_DIRECTORY = None
 PORT = None
+LAST_REQUEST_TIME = time.time()
+SERVER = None
 
 
 def get_full_path_or_404(file_name):
@@ -18,8 +23,20 @@ def get_full_path_or_404(file_name):
     return True, full_file_path
 
 
+def check_death_timer():
+    while True:
+        if time.time() - LAST_REQUEST_TIME > 3:
+            print("GUI server shutting down...")
+            SERVER.shutdown()
+            break
+        time.sleep(1)  # Check every second
+
+
 @app.after_request
 def after_request(response):
+    global LAST_REQUEST_TIME
+    LAST_REQUEST_TIME = time.time()
+
     response.headers[
         "Cache-Control"
     ] = "no-cache, no-store, must-revalidate, public, max-age=0"
@@ -31,6 +48,13 @@ def after_request(response):
 @app.route("/", methods=["GET"])
 def heartbeat():
     return "I'm up"
+
+
+@app.route("/die", methods=["GET"])
+def die():
+    death_thread = Thread(target=check_death_timer)
+    death_thread.start()
+    return "OK"
 
 
 @app.route("/download_file", methods=["GET"])
@@ -80,4 +104,7 @@ def start(replay_files_directory, port=2023, debug=False):
     ROOT_DIRECTORY = replay_files_directory
     PORT = port
 
-    app.run(debug=debug, port=PORT, threaded=True)
+    global SERVER
+    SERVER = make_server("127.0.0.1", port, app)
+    SERVER.serve_forever()
+    # app.run(debug=debug, port=PORT, threaded=True)

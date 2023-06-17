@@ -5,6 +5,8 @@ import sys
 import webbrowser
 from multiprocessing import Process
 
+import requests
+
 from web_server import flask_api
 
 from . import docker_tools
@@ -25,15 +27,13 @@ def run_gui():
 
 
 def stop_gui(gui_process):
-    func = os.environ.get("werkzeug.server.shutdown")
-    if func is None:
-        print("Can't stop gracefully, killing the server process.")
+    print("Requesting graceful termination of GUI server...")
+    requests.request("get", "http://127.0.0.1:2023/die")
+
+    gui_process.join(timeout=15)
+    if gui_process.is_alive():
+        print("Graceful termination failed, killing the GUI server...")
         gui_process.terminate()
-    else:
-        func()
-        gui_process.join(timeout=5)
-        if gui_process.is_alive():
-            gui_process.terminate()
 
 
 def run_gcs(gcs_folder_name, game_map=None):
