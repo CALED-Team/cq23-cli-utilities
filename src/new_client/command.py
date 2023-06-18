@@ -30,6 +30,7 @@ def new_client(*args):
         "raw": "https://github.com/CALED-Team/codequest23-raw-submission.git",
         "python": "https://github.com/CALED-Team/codequest23-python-submission.git",
         "cpp": "https://github.com/CALED-Team/codequest23-cpp-submission.git",
+        "java": "https://github.com/CALED-Team/codequest23-java-submission.git",
     }
     language = args[0]
 
