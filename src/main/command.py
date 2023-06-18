@@ -16,6 +16,7 @@ def help_message():
     message = (
         "Available commands:\n\n"
         + "> cq23 new python my_bot\n"
+        + "> cq23 build <name>\n"
         + "> cq23 run\n"
         + "> cq23 run map=<map name>\n"
         + "> cq23 replay\n"

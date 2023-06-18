@@ -45,9 +45,7 @@ def run_game(*args):
     docker_tools.ensure_docker_client_exists()
     game_files_dir = ".game_files"
     gcs_folder_name = "gcs"
-    # gui_folder_name = "gui"
     gcs_repo = "https://github.com/CALED-Team/game-communication-system.git"
-    # gui_repo = "https://github.com/CALED-Team/game-gui-23.git"
 
     docker_tools.check_dockerfile_exists()
     docker_tools.build_and_tag_image(docker_tools.get_client_image_tag())
