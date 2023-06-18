@@ -103,14 +103,11 @@ def start(replay_files_directory, port=2023, debug=False):
     if not debug:
         logging.getLogger("werkzeug").setLevel(logging.ERROR)
 
-    # This wait time here is implemented for the game server to have enough time to write a couple of the replay files
-    time.sleep(7)
-
     global ROOT_DIRECTORY, PORT
     ROOT_DIRECTORY = replay_files_directory
     PORT = port
 
     global SERVER
-    SERVER = make_server("127.0.0.1", port, app, threaded=True)
+    SERVER = make_server("0.0.0.0", port, app, threaded=True)
     SERVER.serve_forever()
     # app.run(debug=debug, port=PORT, threaded=True)
