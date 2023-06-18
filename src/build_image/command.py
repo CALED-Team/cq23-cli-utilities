@@ -23,6 +23,10 @@ def build(*args):
         print("Name can't end with - or _.")
         exit(1)
 
+    if name in ["local-dev-client"]:
+        print("This is a reserved name. Choose another name.")
+        exit(1)
+
     docker_tools.ensure_docker_client_exists()
     docker_tools.check_dockerfile_exists()
     docker_tools.build_and_tag_image("cq-" + name)

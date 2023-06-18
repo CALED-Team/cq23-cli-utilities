@@ -55,18 +55,18 @@ def stop_gui(gui_process, waiting_page_process):
         gui_process.terminate()
 
 
-def run_gcs(gcs_folder_name, game_map=None):
+def run_gcs(gcs_folder_name, home_image, away_image, game_map=None):
     gcs_src_dir = os.path.join(gcs_folder_name, "src")
     clients_file_content = [
         {
             "id": "1",
-            "name": "Your Code - 1",
-            "image": docker_tools.get_client_image_tag(),
+            "name": "Home",
+            "image": home_image,
         },
         {
             "id": "2",
-            "name": "Your Code - 2",
-            "image": docker_tools.get_client_image_tag(),
+            "name": "Away",
+            "image": away_image,
         },
     ]
     clients_file_address = "clients.json"

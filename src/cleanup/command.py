@@ -23,7 +23,7 @@ def cleanup(*args):
     # Delete images with names starting with 'cq_'
     for image in images:
         for tag in image.tags:
-            if tag.startswith("cq_"):
+            if tag.startswith("cq_") or tag.startswith("cq-"):
                 print("> Deleting image", tag)
                 client.images.remove(image.id, force=True)
                 break

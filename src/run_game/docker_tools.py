@@ -7,6 +7,7 @@ from docker.errors import APIError, DockerException, NotFound
 AWS_REGION = "ap-southeast-2"
 ECR_REGISTRY = "public.ecr.aws/z3i0q5x8"
 GAME_SERVER_ECR_REPO = "cq-game-server"
+SUBMISSIONS_ECR_REPO = "cq-submissions"
 
 DOCKER_CLIENT = None
 

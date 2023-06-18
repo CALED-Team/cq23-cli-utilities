@@ -2,6 +2,7 @@ import sys
 
 from admin.builder import command as builder
 from admin.worker import command as worker
+from build_image.command import build
 from check.command import check
 from cleanup.command import cleanup
 from new_client.command import new_client
@@ -34,6 +35,7 @@ def route_command():
 
     first_arg_mapping = {
         "new": new_client,
+        "build": build,
         "run": run_game,
         "replay": replay,
         "cleanup": cleanup,
