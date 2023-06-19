@@ -5,7 +5,7 @@ from multiprocessing import Process
 
 import requests
 
-from web_server import flask_api
+from cq23.web_server import flask_api
 
 
 def run_gui(replay_files_directory):

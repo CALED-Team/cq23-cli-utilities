@@ -1,4 +1,4 @@
-from main.utils import admin
+from cq23.main.utils import admin
 
 from .aws import create_cq_instances, terminate_instances_by_name
 

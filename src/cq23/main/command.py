@@ -1,14 +1,14 @@
 import sys
 
-from admin.builder import command as builder
-from admin.worker import command as worker
-from build_image.command import build
-from check.command import check
-from cleanup.command import cleanup
-from new_client.command import new_client
-from replay.command import replay
-from run_game.command import run_game
-from zip.command import zip
+from cq23.admin.builder import command as builder
+from cq23.admin.worker import command as worker
+from cq23.build_image.command import build
+from cq23.check.command import check
+from cq23.cleanup.command import cleanup
+from cq23.new_client.command import new_client
+from cq23.replay.command import replay
+from cq23.run_game.command import run_game
+from cq23.zip.command import zip
 
 from .utils import restore_cwd
 

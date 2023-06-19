@@ -9,7 +9,7 @@ from multiprocessing import Process
 
 import requests
 
-from web_server import flask_api
+from cq23.web_server import flask_api
 
 from . import docker_tools
 
