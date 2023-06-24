@@ -4,6 +4,7 @@ from cq23.admin.builder import command as builder
 from cq23.admin.worker import command as worker
 from cq23.build_image.command import build
 from cq23.check.command import check
+from cq23.client_logs.command import logs
 from cq23.cleanup.command import cleanup
 from cq23.new_client.command import new_client
 from cq23.replay.command import replay
@@ -23,6 +24,7 @@ def help_message():
         + "> cq23 replay\n"
         + "> cq23 zip\n"
         + "> cq23 check\n"
+        + "> cq23 logs <client name>\n"
         + "> cq23 cleanup\n\n"
         + "If you need help with the competition, post a message in Discord or email us at info@codequest.club."
     )
@@ -41,6 +43,7 @@ def route_command():
         "cleanup": cleanup,
         "zip": zip,
         "check": check,
+        "logs": logs,
         "worker": worker,
         "builder": builder,
     }
