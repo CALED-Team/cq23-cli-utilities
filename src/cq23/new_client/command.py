@@ -5,13 +5,23 @@ import subprocess
 import sys
 
 
-def shutil_onerror(func, path, exc_info):
-    # Is the error an access error on windows?
-    if sys.platform.startswith("win") and not os.access(path, os.W_OK):
-        os.chmod(path, stat.S_IWUSR)
-        func(path)
-    else:
-        raise
+def remove_readonly(path):
+    os.chmod(path, stat.S_IWUSR)
+
+
+def traverse_and_call(path, func):
+    # Recursive function to traverse the path
+    for item in os.listdir(path):
+        item_path = os.path.join(path, item)
+        if os.path.isfile(item_path):
+            # Call the function for files
+            func(item_path)
+        elif os.path.isdir(item_path):
+            # Recursive call for subdirectories
+            traverse_and_call(item_path, func)
+
+            # Call the function for folders
+            func(item_path)
 
 
 def clone_repository(repo_url, repo_directory):
@@ -28,6 +38,9 @@ def delete_git_folder(repo_directory):
     current_directory = os.getcwd()
     repo_path = os.path.join(current_directory, repo_directory)
     git_folder = os.path.join(repo_path, ".git")
+
+    if sys.platform.startswith("win"):
+        traverse_and_call(git_folder, remove_readonly)
 
     shutil.rmtree(git_folder)
 
