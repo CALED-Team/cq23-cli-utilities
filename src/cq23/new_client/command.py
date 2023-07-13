@@ -1,6 +1,17 @@
 import os
 import shutil
+import stat
 import subprocess
+import sys
+
+
+def shutil_onerror(func, path, exc_info):
+    # Is the error an access error on windows?
+    if sys.platform.startswith("win") and not os.access(path, os.W_OK):
+        os.chmod(path, stat.S_IWUSR)
+        func(path)
+    else:
+        raise
 
 
 def clone_repository(repo_url, repo_directory):
