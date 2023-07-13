@@ -4,8 +4,8 @@ from cq23.admin.builder import command as builder
 from cq23.admin.worker import command as worker
 from cq23.build_image.command import build
 from cq23.check.command import check
-from cq23.client_logs.command import logs
 from cq23.cleanup.command import cleanup
+from cq23.client_logs.command import logs
 from cq23.new_client.command import new_client
 from cq23.replay.command import replay
 from cq23.run_game.command import run_game
@@ -17,7 +17,7 @@ from .utils import restore_cwd
 def help_message():
     message = (
         "Available commands:\n\n"
-        + "> cq23 new python my_bot\n"
+        + "> cq23 new <language> <bot name>\n"
         + "> cq23 build <name>\n"
         + "> cq23 run\n"
         + "> cq23 run map=<map name>\n"
