@@ -56,6 +56,7 @@ def new_client(*args):
         "cpp": "https://github.com/CALED-Team/codequest23-cpp-submission.git",
         "java": "https://github.com/CALED-Team/codequest23-java-submission.git",
         "go": "https://github.com/CALED-Team/codequest23-go-submission.git",
+        "rust": "https://github.com/CALED-Team/codequest23-rust-submission.git",
     }
     language = args[0]
 
