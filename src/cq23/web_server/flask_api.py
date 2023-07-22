@@ -67,7 +67,7 @@ def download_file():
     return send_file(response)
 
 
-@app.route("/get_replay_file_url", methods=["GET"])
+@app.route("/get_replay_file_url/", methods=["GET"])
 def get_file_url():
     assert ROOT_DIRECTORY and PORT
     file_name = request.args["file_name"]
@@ -84,7 +84,7 @@ def get_file_url():
     )
 
 
-@app.route("/get_replay_file_content", methods=["GET"])
+@app.route("/get_replay_file_content/", methods=["GET"])
 def get_file_contents():
     assert ROOT_DIRECTORY
     file_name = request.args["file_name"]
