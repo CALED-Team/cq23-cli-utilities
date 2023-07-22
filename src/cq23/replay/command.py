@@ -42,5 +42,5 @@ def replay(*args):
             print("Match id should be a number: cq23 replay 123")
             return
         webbrowser.open(
-            f"https://watch.codequest.club/?base_url=api.codequest.club/api/matches/{match_id}/"
+            f"https://watch.codequest.club/?base_url=https://api.codequest.club/api/matches/{match_id}/"
         )
