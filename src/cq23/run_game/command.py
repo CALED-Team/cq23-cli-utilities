@@ -84,6 +84,7 @@ def run_game(*args):
     game_files_abs_path = os.getcwd()
 
     clone_or_pull_repository(gcs_repo, gcs_folder_name)
+    print("KH73TU")
     docker_tools.pull_latest_game_server()
     run_gcs(
         gcs_folder_name,
