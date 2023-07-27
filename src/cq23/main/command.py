@@ -28,7 +28,8 @@ def help_message():
         + "> cq23 check\n"
         + "> cq23 logs <client name>\n"
         + "> cq23 cleanup\n\n"
-        + "If you need help with the competition, post a message in Discord or email us at info@codequest.club. \t\t\t PXU8V6"
+        + "If you need help with the competition, post a message in Discord or email us at info@codequest.club."
+        + " \t\t\t PXU8V6"
     )
     print(message)
 
@@ -38,7 +39,6 @@ def route_command():
     command_args = sys.argv[1:]
 
     first_arg_mapping = {
-        "help": help_message,
         "new": new_client,
         "build": build,
         "run": run_game,
