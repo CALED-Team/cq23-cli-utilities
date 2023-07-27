@@ -17,6 +17,7 @@ from .utils import restore_cwd
 def help_message():
     message = (
         "Available commands:\n\n"
+        + "> cq23 help\n"
         + "> cq23 new <language> <bot name>\n"
         + "> cq23 build <name>\n"
         + "> cq23 run\n"
@@ -27,7 +28,7 @@ def help_message():
         + "> cq23 check\n"
         + "> cq23 logs <client name>\n"
         + "> cq23 cleanup\n\n"
-        + "If you need help with the competition, post a message in Discord or email us at info@codequest.club."
+        + "If you need help with the competition, post a message in Discord or email us at info@codequest.club. \t\t\t PXU8V6"
     )
     print(message)
 
@@ -37,6 +38,7 @@ def route_command():
     command_args = sys.argv[1:]
 
     first_arg_mapping = {
+        "help": help_message,
         "new": new_client,
         "build": build,
         "run": run_game,
