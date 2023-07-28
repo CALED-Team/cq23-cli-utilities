@@ -19,14 +19,17 @@ def clone_or_pull_repository(repository_url, folder_path):
     print(folder_path + " cloned successfully.")
 
 
-def extract_arg_from_command_args(arg_name, args, default=None):
+def extract_arg_from_command_args(arg_name, args, default=None, lower=False):
     arg_value = list(filter(lambda x: str(x).startswith(arg_name + "="), args))
     if not arg_value:
         return default
     if len(arg_value) > 1:
         raise Exception(f"Multiple `{arg_name}` arguments provided.")
 
-    return arg_value[0][len(arg_name) + 1 :]  # noqa: E203
+    val = arg_value[0][len(arg_name) + 1 :]  # noqa: E203
+    if lower:
+        return str(val).lower()
+    return val
 
 
 def copy_container_logs(game_files_abs_path, gcs_folder_name):
@@ -90,7 +93,7 @@ def run_game(*args):
         gcs_folder_name,
         home_image,
         away_image,
-        extract_arg_from_command_args("map", args),
+        extract_arg_from_command_args("map", args, lower=True),
     )
     docker_tools.copy_replay_files(game_files_abs_path)
     copy_container_logs(game_files_abs_path, gcs_folder_name)
