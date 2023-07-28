@@ -23,7 +23,7 @@ def build(*args):
         print("Name can't end with - or _.")
         exit(1)
 
-    if name in ["local-dev-client"]:
+    if name in ["local-dev-client", "sample-bot-1"]:
         print("This is a reserved name. Choose another name.")
         exit(1)
 

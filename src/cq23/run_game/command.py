@@ -46,7 +46,7 @@ def clean_image_name(image_name):
     if not image_name:
         return image_name
 
-    if image_name in []:  # Add reserved names here when there are any
+    if image_name in ["sample-bot-1"]:  # Add reserved names here when there are any
         image_name = (
             docker_tools.ECR_REGISTRY
             + "/"
